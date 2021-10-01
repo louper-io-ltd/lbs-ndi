@@ -260,19 +260,19 @@ obs_properties_t* ndi_source_getproperties(void* data)
 		obs_module_text("NDIPlugin.SourceProps.Latency.Low"),
 		PROP_LATENCY_LOW);
 
-	obs_properties_add_button(props, "ndi_website", "NDI.NewTek.com", [](
-		obs_properties_t *pps,
-		obs_property_t *prop,
-		void* private_data)
-	{
-		#if defined(_WIN32)
-			ShellExecute(NULL, "open", "http://ndi.newtek.com", NULL, NULL, SW_SHOWNORMAL);
-		#elif defined(__linux__) || defined(__APPLE__)
-			int suppresswarning = system("open http://ndi.newtek.com");
-		#endif
+	// obs_properties_add_button(props, "ndi_website", "NDI.NewTek.com", [](
+	// 	obs_properties_t *pps,
+	// 	obs_property_t *prop,
+	// 	void* private_data)
+	// {
+	// 	#if defined(_WIN32)
+	// 		ShellExecute(NULL, "open", "http://ndi.newtek.com", NULL, NULL, SW_SHOWNORMAL);
+	// 	#elif defined(__linux__) || defined(__APPLE__)
+	// 		int suppresswarning = system("open http://ndi.newtek.com");
+	// 	#endif
 
-		return true;
-	});
+	// 	return true;
+	// });
 
 	return props;
 }
