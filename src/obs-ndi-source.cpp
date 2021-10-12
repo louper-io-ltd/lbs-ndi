@@ -183,82 +183,82 @@ obs_properties_t* ndi_source_getproperties(void* data)
 			sources[i].p_ndi_name, sources[i].p_ndi_name);
 	}
 
-	// obs_property_t* bw_modes = obs_properties_add_list(props, PROP_BANDWIDTH,
-	// 	obs_module_text("NDIPlugin.SourceProps.Bandwidth"),
-	// 	OBS_COMBO_TYPE_LIST,
-	// 	OBS_COMBO_FORMAT_INT);
+	obs_property_t* bw_modes = obs_properties_add_list(props, PROP_BANDWIDTH,
+		obs_module_text("NDIPlugin.SourceProps.Bandwidth"),
+		OBS_COMBO_TYPE_LIST,
+		OBS_COMBO_FORMAT_INT);
 
-	// obs_property_list_add_int(bw_modes,
-	// 	obs_module_text("NDIPlugin.BWMode.Highest"), PROP_BW_HIGHEST);
-	// obs_property_list_add_int(bw_modes,
-	// 	obs_module_text("NDIPlugin.BWMode.Lowest"), PROP_BW_LOWEST);
-	// obs_property_list_add_int(bw_modes,
-	// 	obs_module_text("NDIPlugin.BWMode.AudioOnly"), PROP_BW_AUDIO_ONLY);
+	obs_property_list_add_int(bw_modes,
+		obs_module_text("NDIPlugin.BWMode.Highest"), PROP_BW_HIGHEST);
+	obs_property_list_add_int(bw_modes,
+		obs_module_text("NDIPlugin.BWMode.Lowest"), PROP_BW_LOWEST);
+	obs_property_list_add_int(bw_modes,
+		obs_module_text("NDIPlugin.BWMode.AudioOnly"), PROP_BW_AUDIO_ONLY);
 
-	// obs_property_set_modified_callback(bw_modes, [](
-	// 	obs_properties_t *props,
-	// 	obs_property_t *property,
-	// 	obs_data_t *settings)
-	// {
-	// 	bool is_audio_only =
-	// 		(obs_data_get_int(settings, PROP_BANDWIDTH) == PROP_BW_AUDIO_ONLY);
+	obs_property_set_modified_callback(bw_modes, [](
+		obs_properties_t *props,
+		obs_property_t *property,
+		obs_data_t *settings)
+	{
+		bool is_audio_only =
+			(obs_data_get_int(settings, PROP_BANDWIDTH) == PROP_BW_AUDIO_ONLY);
 
-	// 	obs_property_t* yuv_range = obs_properties_get(props, PROP_YUV_RANGE);
-	// 	obs_property_t* yuv_colorspace =
-	// 		obs_properties_get(props, PROP_YUV_COLORSPACE);
+		obs_property_t* yuv_range = obs_properties_get(props, PROP_YUV_RANGE);
+		obs_property_t* yuv_colorspace =
+			obs_properties_get(props, PROP_YUV_COLORSPACE);
 
-	// 	obs_property_set_visible(yuv_range, !is_audio_only);
-	// 	obs_property_set_visible(yuv_colorspace, !is_audio_only);
+		obs_property_set_visible(yuv_range, !is_audio_only);
+		obs_property_set_visible(yuv_colorspace, !is_audio_only);
 
-	// 	return true;
-	// });
+		return true;
+	});
 
-	// obs_property_t* sync_modes = obs_properties_add_list(props, PROP_SYNC,
-	// 	obs_module_text("NDIPlugin.SourceProps.Sync"),
-	// 	OBS_COMBO_TYPE_LIST,
-	// 	OBS_COMBO_FORMAT_INT);
+	obs_property_t* sync_modes = obs_properties_add_list(props, PROP_SYNC,
+		obs_module_text("NDIPlugin.SourceProps.Sync"),
+		OBS_COMBO_TYPE_LIST,
+		OBS_COMBO_FORMAT_INT);
 
-	// obs_property_list_add_int(sync_modes,
-	// 	obs_module_text("NDIPlugin.SyncMode.NDITimestamp"),
-	// 	PROP_SYNC_NDI_TIMESTAMP);
-	// obs_property_list_add_int(sync_modes,
-	// 	obs_module_text("NDIPlugin.SyncMode.NDISourceTimecode"),
-	// 	PROP_SYNC_NDI_SOURCE_TIMECODE);
+	obs_property_list_add_int(sync_modes,
+		obs_module_text("NDIPlugin.SyncMode.NDITimestamp"),
+		PROP_SYNC_NDI_TIMESTAMP);
+	obs_property_list_add_int(sync_modes,
+		obs_module_text("NDIPlugin.SyncMode.NDISourceTimecode"),
+		PROP_SYNC_NDI_SOURCE_TIMECODE);
 
-	// obs_properties_add_bool(props, PROP_HW_ACCEL,
-	// 	obs_module_text("NDIPlugin.SourceProps.HWAccel"));
+	obs_properties_add_bool(props, PROP_HW_ACCEL,
+		obs_module_text("NDIPlugin.SourceProps.HWAccel"));
 
-	// obs_properties_add_bool(props, PROP_FIX_ALPHA,
-	// 	obs_module_text("NDIPlugin.SourceProps.AlphaBlendingFix"));
+	obs_properties_add_bool(props, PROP_FIX_ALPHA,
+		obs_module_text("NDIPlugin.SourceProps.AlphaBlendingFix"));
 
-	// obs_property_t* yuv_ranges = obs_properties_add_list(props, PROP_YUV_RANGE,
-	// 	obs_module_text("NDIPlugin.SourceProps.ColorRange"),
-	// 	OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
+	obs_property_t* yuv_ranges = obs_properties_add_list(props, PROP_YUV_RANGE,
+		obs_module_text("NDIPlugin.SourceProps.ColorRange"),
+		OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
 
-	// obs_property_list_add_int(yuv_ranges,
-	// 	obs_module_text("NDIPlugin.SourceProps.ColorRange.Partial"),
-	// 	PROP_YUV_RANGE_PARTIAL);
-	// obs_property_list_add_int(yuv_ranges,
-	// 	obs_module_text("NDIPlugin.SourceProps.ColorRange.Full"),
-	// 	PROP_YUV_RANGE_FULL);
+	obs_property_list_add_int(yuv_ranges,
+		obs_module_text("NDIPlugin.SourceProps.ColorRange.Partial"),
+		PROP_YUV_RANGE_PARTIAL);
+	obs_property_list_add_int(yuv_ranges,
+		obs_module_text("NDIPlugin.SourceProps.ColorRange.Full"),
+		PROP_YUV_RANGE_FULL);
 
-	// obs_property_t* yuv_spaces = obs_properties_add_list(props, PROP_YUV_COLORSPACE,
-	// 	obs_module_text("NDIPlugin.SourceProps.ColorSpace"),
-	// 	OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
+	obs_property_t* yuv_spaces = obs_properties_add_list(props, PROP_YUV_COLORSPACE,
+		obs_module_text("NDIPlugin.SourceProps.ColorSpace"),
+		OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
 
-	// obs_property_list_add_int(yuv_spaces, "BT.709", PROP_YUV_SPACE_BT709);
-	// obs_property_list_add_int(yuv_spaces, "BT.601", PROP_YUV_SPACE_BT601);
+	obs_property_list_add_int(yuv_spaces, "BT.709", PROP_YUV_SPACE_BT709);
+	obs_property_list_add_int(yuv_spaces, "BT.601", PROP_YUV_SPACE_BT601);
 
-	// obs_property_t* latency_modes = obs_properties_add_list(props, PROP_LATENCY,
-	// 	obs_module_text("NDIPlugin.SourceProps.Latency"),
-	// 	OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
+	obs_property_t* latency_modes = obs_properties_add_list(props, PROP_LATENCY,
+		obs_module_text("NDIPlugin.SourceProps.Latency"),
+		OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
 
-	// obs_property_list_add_int(latency_modes,
-	// 	obs_module_text("NDIPlugin.SourceProps.Latency.Normal"),
-	// 	PROP_LATENCY_NORMAL);
-	// obs_property_list_add_int(latency_modes,
-	// 	obs_module_text("NDIPlugin.SourceProps.Latency.Low"),
-	// 	PROP_LATENCY_LOW);
+	obs_property_list_add_int(latency_modes,
+		obs_module_text("NDIPlugin.SourceProps.Latency.Normal"),
+		PROP_LATENCY_NORMAL);
+	obs_property_list_add_int(latency_modes,
+		obs_module_text("NDIPlugin.SourceProps.Latency.Low"),
+		PROP_LATENCY_LOW);
 
 	// obs_properties_add_button(props, "ndi_website", "NDI.NewTek.com", [](
 	// 	obs_properties_t *pps,
