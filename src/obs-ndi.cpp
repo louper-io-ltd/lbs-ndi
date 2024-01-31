@@ -198,9 +198,11 @@ const NDIlib_v4* load_ndilib()
 {
 	QStringList locations;
 	locations << QString(qgetenv(NDILIB_REDIST_FOLDER));
-#if defined(__linux__) || defined(__APPLE__)
+#if defined(__linux__)
 	locations << "/usr/lib";
 	locations << "/usr/local/lib";
+#elif defined(__APPLE__)
+	locations <<  QCoreApplication::applicationDirPath() + "/../PlugIns";
 #endif
 
 	for (QString path : locations) {
